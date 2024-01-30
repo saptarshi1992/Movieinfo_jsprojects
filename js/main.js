@@ -2,19 +2,18 @@ $(document).ready(() => {
 	$('#searchForm').on('submit', (e) => {
 		console.log($('#searchText').val());
 		let searchText = $('#searchText').val();
-		getMovies(searchText); 
-    e.preventDefault();
+		getMovies(searchText);
+		e.preventDefault();
 	});
 });
-function getMovies(searchText)
-{
-	axios.get('http://www.omdbapi.com/?apikey=83dfa283&s='+searchText)
-	.then((response) => {
-		console.log(response);
-		let movies = response.data.Search;
-		let output = '';
-		$.each(movies, (index, movie) => {
-           output += `
+function getMovies(searchText) {
+	axios.get('http://www.omdbapi.com/?apikey=83dfa283&s=' + searchText)
+		.then((response) => {
+			console.log(response);
+			let movies = response.data.Search;
+			let output = '';
+			$.each(movies, (index, movie) => {
+				output += `
                <div class="col-md-3">
                 <div class = "well text-center">
                 <img src = "${movie.Poster}">
@@ -22,28 +21,25 @@ function getMovies(searchText)
                 <a onclick="movieSelected('${movie.imdbID}')" class="btn btn-primary" href="#"> More Details</a>
                 </div>
                 </div>
-
-
-           `
+				`	});
+			$('#movies').html(output);
+		})
+		.catch((err) => {
+			console.log(err);
 		});
-             $('#movies').html(output);
-	})
-	.catch((err) => {
-		console.log(err);
-	});
 }
-function movieSelected(id){
-  sessionStorage.setItem('movieId', id);
-  window.location = 'movie.html';
-  return false;	
+function movieSelected(id) {
+	sessionStorage.setItem('movieId', id);
+	window.location = 'movie.html';
+	return false;
 }
-function getMovie(){
+function getMovie() {
 	let movieId = sessionStorage.getItem('movieId');
-	axios.get('http://www.omdbapi.com/?apikey=83dfa283&i='+movieId)
-	.then((response) => {
-		console.log(response);
-		let movie = response.data;
-		let output = `
+	axios.get('http://www.omdbapi.com/?apikey=83dfa283&i=' + movieId)
+		.then((response) => {
+			console.log(response);
+			let movie = response.data;
+			let output = `
 
           <div class="row">
           	<div class="col-md-4">
@@ -62,11 +58,7 @@ function getMovie(){
               	<li class="list-group-item"><strong>Language:</strong>${movie.Language}</li>
               	<li class="list-group-item"><strong>Production:</strong>${movie.Production}</li>
               	<li class="list-group-item"><strong>Released:</strong>${movie.Released}</li>
-              	
-       
-              	
-
-              </ul>
+              	</ul>
             </div> 
          </div>
          <div class="row">
@@ -80,12 +72,12 @@ function getMovie(){
             </div>
          </div>
 		`;
-		$('#movie').html(output);
-		
-		
-            
-	})
-	.catch((err) => {
-		console.log(err);
-	});
+			$('#movie').html(output);
+
+
+
+		})
+		.catch((err) => {
+			console.log(err);
+		});
 }

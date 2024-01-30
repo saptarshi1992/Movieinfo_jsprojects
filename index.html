@@ -1,72 +1,130 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>MovieInfo</title>
-	<style type="text/css">
-		<style>
-.container{background-color: #DD4814;width: 100%;height: 100%;}
-/* Sticky Social Icons */
-.sticky-container{ padding:0px; margin:0px; position:fixed; right:-130px;top:230px; width:210px; z-index: 1100;}
-.sticky li{list-style-type:none;background-color:#fff;color:#efefef;height:43px;padding:0px;margin:0px 0px 1px 0px; -webkit-transition:all 0.25s ease-in-out;-moz-transition:all 0.25s ease-in-out;-o-transition:all 0.25s ease-in-out; transition:all 0.25s ease-in-out; cursor:pointer;}
-.sticky li:hover{margin-left:-115px;}
-.sticky li img{float:left;margin:5px 4px;margin-right:5px;}
-.sticky li p{padding-top:5px;margin:0px;line-height:16px; font-size:11px;}
-.sticky li p a{ text-decoration:none; color:#2C3539;}
-.sticky li p a:hover{text-decoration:underline;}
-/* Sticky Social Icons */
-</style>
-	</style>
-	<link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/cyborg/bootstrap.min.css">
-	<link rel="stylesheet" href="css/style.css">
-	
-</head>
-<body>
-<nav class="navbar navbar-default">
-	<div class="container">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="index.html">MovieInfo</a>
+
+	<head>
+		<title>MovieInfo</title>
+		<style type="text/css">
+			.container {
+				background-color: #DD4814;
+				width: 100%;
+				height: 100%;
+			}
+
+			/* Sticky Social Icons */
+			.sticky-container {
+				padding: 0px;
+				margin: 0px;
+				position: fixed;
+				right: -130px;
+				top: 230px;
+				width: 210px;
+				z-index: 1100;
+			}
+
+			.sticky li {
+				list-style-type: none;
+				background-color: #fff;
+				color: #efefef;
+				height: 43px;
+				padding: 0px;
+				margin: 0px 0px 1px 0px;
+				-webkit-transition: all 0.25s ease-in-out;
+				-moz-transition: all 0.25s ease-in-out;
+				-o-transition: all 0.25s ease-in-out;
+				transition: all 0.25s ease-in-out;
+				cursor: pointer;
+			}
+
+			.sticky li:hover {
+				margin-left: -115px;
+			}
+
+			.sticky li img {
+				float: left;
+				margin: 5px 4px;
+				margin-right: 5px;
+			}
+
+			.sticky li p {
+				padding-top: 5px;
+				margin: 0px;
+				line-height: 16px;
+				font-size: 11px;
+			}
+
+			.sticky li p a {
+				text-decoration: none;
+				color: #2C3539;
+			}
+
+			.sticky li p a:hover {
+				text-decoration: underline;
+			}
+
+			.navbar-brand {
+				color: white;
+			}
+
+			/* Sticky Social Icons */
+		</style>
+		</style>
+		<link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/cyborg/bootstrap.min.css">
+		<link rel="stylesheet" href="css/style.css">
+
+	</head>
+
+	<body>
+		<nav class="navbar navbar-default">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="index.html">MovieDB</a>
+				</div>
+			</div>
+		</nav>
+		<div class="container">
+			<div class="jumbotron">
+				<h3 class="text-center">Search For Any Movie</h3>
+				<h4 class="text-center">(Click Enter after enter your movie name)</h4>
+				<form id="searchForm">
+					<input type="text" class="form-control" id="searchText" placeholder="Serach Movies..">
+
+				</form>
+			</div>
 		</div>
-	</div>
-</nav>
-<div class="container">
-	<div class="jumbotron">
-		<h3 class="text-center">Search For Any Movie</h3>
-		<form id="searchForm">
-			 <input type="text" class="form-control" id="searchText"  placeholder="Serach Movies..">
 
-		</form>
-	</div>
-</div>
+		<div class="container">
+			<section id="about">
+				<div class="container mt-4 pt-4">
+					<h3 class="text-center">Search Results</h3>
+				
+			</section>
 
-<div class="container">
+			<div class="sticky-container">
+				<ul class="sticky">
+					<li>
+						<img src="images/facebook-circle.png" width="32" height="32">
+						<p><a href="https://www.facebook.com/" target="_blank">Like Us on<br>Facebook</a></p>
+					</li>
+					<li>
+						<img src="images/twitter-circle.png" width="32" height="32">
+						<p><a href="https://twitter.com/" target="_blank">Follow Us on<br>Twitter</a></p>
+					</li>
 
-	<div class="sticky-container">
-		<ul class="sticky">
-			<li>
-				<img src="images/facebook-circle.png" width="32" height="32">
-				<p><a href="https://www.facebook.com/" target="_blank">Like Us on<br>Facebook</a></p>
-			</li>
-			<li>
-				<img src="images/twitter-circle.png" width="32" height="32">
-				<p><a href="https://twitter.com/" target="_blank">Follow Us on<br>Twitter</a></p>
-			</li>
-			
-			<li>
-				<img src="images/github.jpg" width="32" height="32">
-				<p><a href="https://www.linkedin.com/company/" target="_blank">For Source Code<br>Github</a></p>
-			</li>
-			
-		</ul>
-	</div>
-</div>
-<div class="container">
-	<div id="movies" class="row"></div>
-</div>
-<script
-  src="http://code.jquery.com/jquery-3.5.1.js"
-  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-  crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>  
-  <script type="text/javascript" src="js/main.js"></script>
-</body>
+					<li>
+						<img src="images/github.jpg" width="32" height="32">
+						<p><a href="" target="_blank">For Source Code<br>Github</a></p>
+					</li>
+
+				</ul>
+			</div>
+		</div>
+		<div class="container">
+			<div id="movies" class="row"></div>
+		</div>
+		<script src="http://code.jquery.com/jquery-3.5.1.js"
+			integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+	</body>
+
 </html>
